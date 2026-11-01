@@ -1,0 +1,60 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Mon Nov 2 · Z2 pyramid 60min @ ~197W</name>
+  <description>Z2 pyramid: 3-min steps up and down through Z2 with changing cadence. Avg ~197 W, cap 220 W outside sprinkles. Follow the on-screen cues.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <Warmup Duration="600" PowerLow="0.500" PowerHigh="0.680">
+      <textevent timeoffset="0" message="Z2 pyramid today. Easy first 10 min"/>
+    </Warmup>
+    <SteadyState Duration="180" Power="0.620" Cadence="90">
+      <textevent timeoffset="0" message="Step 1/6: 179 W @ 90 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.660" Cadence="85">
+      <textevent timeoffset="0" message="Step 2/6: 191 W @ 85 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.700" Cadence="95">
+      <textevent timeoffset="0" message="Step 3/6: 202 W @ 95 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.740" Cadence="80">
+      <textevent timeoffset="0" message="Step 4/6: 214 W @ 80 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.700" Cadence="100">
+      <textevent timeoffset="0" message="Step 5/6: 202 W @ 100 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.660" Cadence="90">
+      <textevent timeoffset="0" message="Step 6/6: 191 W @ 90 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="90">
+      <textevent timeoffset="0" message="Step 1/6: 179 W @ 90 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.660" Cadence="85">
+      <textevent timeoffset="0" message="Step 2/6: 191 W @ 85 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.700" Cadence="95">
+      <textevent timeoffset="0" message="Step 3/6: 202 W @ 95 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.740" Cadence="80">
+      <textevent timeoffset="0" message="Step 4/6: 214 W @ 80 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.700" Cadence="100">
+      <textevent timeoffset="0" message="Step 5/6: 202 W @ 100 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.660" Cadence="90">
+      <textevent timeoffset="0" message="Step 6/6: 191 W @ 90 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="90">
+      <textevent timeoffset="0" message="Step 1/6: 179 W @ 90 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.660" Cadence="85">
+      <textevent timeoffset="0" message="Step 2/6: 191 W @ 85 rpm"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.700" Cadence="95">
+      <textevent timeoffset="0" message="Step 3/6: 202 W @ 95 rpm"/>
+    </SteadyState>
+    <Cooldown Duration="300" PowerLow="0.680" PowerHigh="0.500">
+      <textevent timeoffset="0" message="Cool-down. Good work"/>
+    </Cooldown>
+  </workout>
+</workout_file>

@@ -1,0 +1,177 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Sun Nov 8 · Cadence ladder 150min @ ~202W</name>
+  <description>Z2 with a cadence ladder every 10 min (85-95-105-115 rpm). Avg ~202 W, cap 220 W outside sprinkles. Follow the on-screen cues. Fuel 60-80 g carbs/h. Long ride. Fuel 60-90 g carbs/h.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <Warmup Duration="600" PowerLow="0.500" PowerHigh="0.700">
+      <textevent timeoffset="0" message="Cadence ladder today. Easy first 10 min"/>
+    </Warmup>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in | Eat 25-30 g carbs"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <SteadyState Duration="120" Power="0.670" Cadence="105">
+      <textevent timeoffset="0" message="105 rpm, quiet upper body"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.620" Cadence="115">
+      <textevent timeoffset="0" message="Spin-out 115+ rpm, no bouncing"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.700" Cadence="85">
+      <textevent timeoffset="0" message="Ladder: 85 rpm, settle in"/>
+    </SteadyState>
+    <SteadyState Duration="60" Power="0.720" Cadence="95">
+      <textevent timeoffset="0" message="95 rpm, smooth circles"/>
+    </SteadyState>
+    <Cooldown Duration="300" PowerLow="0.700" PowerHigh="0.500">
+      <textevent timeoffset="0" message="Cool-down. Good work"/>
+    </Cooldown>
+  </workout>
+</workout_file>

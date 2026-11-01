@@ -1,0 +1,63 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Sat Nov 7 · Z2 + sprint sprinkles 60min @ ~197W</name>
+  <description>Z2 with a 10-s acceleration every 8 min. Keeps the legs snappy. Avg ~197 W, cap 220 W outside sprinkles. Follow the on-screen cues. Optional. Rest if you prefer.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <Warmup Duration="600" PowerLow="0.500" PowerHigh="0.680">
+      <textevent timeoffset="0" message="Z2 + sprint sprinkles today. Easy first 10 min"/>
+    </Warmup>
+    <SteadyState Duration="400" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <SteadyState Duration="10" Power="1.500" Cadence="110">
+      <textevent timeoffset="0" message="Sprinkle: 10 s fast, seated, spin it up"/>
+    </SteadyState>
+    <SteadyState Duration="70" Power="0.580">
+      <textevent timeoffset="0" message="Easy, back to Z2"/>
+    </SteadyState>
+    <SteadyState Duration="400" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <SteadyState Duration="10" Power="1.500" Cadence="110">
+      <textevent timeoffset="0" message="Sprinkle: 10 s fast, seated, spin it up"/>
+    </SteadyState>
+    <SteadyState Duration="70" Power="0.580">
+      <textevent timeoffset="0" message="Easy, back to Z2"/>
+    </SteadyState>
+    <SteadyState Duration="400" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <SteadyState Duration="10" Power="1.500" Cadence="110">
+      <textevent timeoffset="0" message="Sprinkle: 10 s fast, seated, spin it up"/>
+    </SteadyState>
+    <SteadyState Duration="70" Power="0.580">
+      <textevent timeoffset="0" message="Easy, back to Z2"/>
+    </SteadyState>
+    <SteadyState Duration="400" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <SteadyState Duration="10" Power="1.500" Cadence="110">
+      <textevent timeoffset="0" message="Sprinkle: 10 s fast, seated, spin it up"/>
+    </SteadyState>
+    <SteadyState Duration="70" Power="0.580">
+      <textevent timeoffset="0" message="Easy, back to Z2"/>
+    </SteadyState>
+    <SteadyState Duration="400" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <SteadyState Duration="10" Power="1.500" Cadence="110">
+      <textevent timeoffset="0" message="Sprinkle: 10 s fast, seated, spin it up"/>
+    </SteadyState>
+    <SteadyState Duration="70" Power="0.580">
+      <textevent timeoffset="0" message="Easy, back to Z2"/>
+    </SteadyState>
+    <SteadyState Duration="300" Power="0.680">
+      <textevent timeoffset="0" message="Cruise Z2, drink"/>
+    </SteadyState>
+    <Cooldown Duration="300" PowerLow="0.680" PowerHigh="0.500">
+      <textevent timeoffset="0" message="Cool-down. Good work"/>
+    </Cooldown>
+  </workout>
+</workout_file>

@@ -1,0 +1,272 @@
+<title>Training Week</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one narrow activity-feed column (phone first). Week snapshot card, then one card per day with a power profile in place of a map. */
+:root{
+  --bg:#f2f2f5; --card:#ffffff; --fg:#242428; --muted:#6d6d78; --line:#e3e3e8; --soft:#f6f6f8;
+  --accent:#fc5200; --accent-ink:#ffffff; --accent-soft:#fff0e8;
+  --ok:#1f9d55; --warn:#d48a00; --bad:#d62c2c;
+  --z1:#a7a7b2; --z2:#3d8be0; --z3:#2fae6f; --z4:#e8b500; --z5:#fc7a1e; --z6:#fc5200; --z7:#c8102e;
+  --font:"Figtree",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f0f11; --card:#1c1c1f; --fg:#f2f2f4; --muted:#9c9ca6; --line:#2d2d32; --soft:#242428;
+  --accent:#ff6a1f; --accent-ink:#ffffff; --accent-soft:#3a2214;
+  --ok:#3ccb7f; --warn:#f0b43c; --bad:#ff5d5d;
+  --z1:#6f6f7a; --z2:#4f9cf0; --z3:#3fc584; --z4:#f2c82e; --z5:#ff8a3a; --z6:#ff6a1f; --z7:#ff3b55;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f0f11; --card:#1c1c1f; --fg:#f2f2f4; --muted:#9c9ca6; --line:#2d2d32; --soft:#242428;
+  --accent:#ff6a1f; --accent-ink:#ffffff; --accent-soft:#3a2214;
+  --ok:#3ccb7f; --warn:#f0b43c; --bad:#ff5d5d;
+  --z1:#6f6f7a; --z2:#4f9cf0; --z3:#3fc584; --z4:#f2c82e; --z5:#ff8a3a; --z6:#ff6a1f; --z7:#ff3b55;
+  color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.45 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:12px}
+.num{font-variant-numeric:tabular-nums}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:4px 2px 0}
+.top h1{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.top .range{color:var(--muted);font-weight:600}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.card{background:var(--card);border-radius:10px;border:1px solid var(--line);overflow:hidden}
+.pad{padding:16px}
+.snap-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.block{font-weight:600;margin-top:2px;min-width:0}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:currentColor;display:inline-block}
+.p-green{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+.p-amber{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}
+.p-red{color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(56px,1fr));gap:12px;margin-top:14px}
+.stat .l{font-size:12px;color:var(--muted);font-weight:500}
+.stat .v{font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.15}
+.stat .v small{font-size:13px;font-weight:600;color:var(--muted);margin-left:2px}
+.weekbars{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:18px;align-items:end}
+.wb{display:flex;flex-direction:column;align-items:center;gap:6px}
+.wb .bar{width:100%;max-width:34px;border-radius:4px;background:var(--soft);border:1.5px dashed var(--line);box-sizing:border-box}
+.wb.done .bar{background:var(--accent);border:0}
+.wb.today .bar{border:2px solid var(--accent);background:var(--accent-soft)}
+.wb.key .bar{box-shadow:inset 0 -4px 0 color-mix(in srgb,var(--fg) 25%,transparent)}
+.wb .d{font-size:12px;font-weight:700;color:var(--muted)}
+.wb.today .d{color:var(--accent)}
+.wb .m{font-size:11px;color:var(--muted)}
+.rows{display:flex;flex-direction:column;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.row-l{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600;margin-bottom:6px}
+.row-l span:last-child{color:var(--muted);font-weight:500}
+.track{position:relative;height:8px;border-radius:999px;background:var(--soft);overflow:visible}
+.fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--accent)}
+.tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--fg);border-radius:1px}
+.split{display:flex;height:8px;border-radius:999px;overflow:hidden;gap:2px}
+.split div{height:100%}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:6px}
+.legend b{color:var(--fg);font-weight:700}
+.coach{display:flex;gap:12px;align-items:flex-start}
+.coach .av{flex:none;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:14px}
+.coach p{margin:6px 0 0;color:var(--fg)}
+.coach .who{font-weight:700}
+.coach .when{color:var(--muted);font-size:12px}
+.act-head{display:flex;gap:12px;align-items:center;padding:14px 16px 0}
+.dbadge{flex:none;width:44px;height:44px;border-radius:50%;background:var(--soft);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1}
+.dbadge b{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.dbadge span{font-size:17px;font-weight:800}
+.act.today .dbadge{background:var(--accent);color:var(--accent-ink)}
+.act.today .dbadge b{color:var(--accent-ink)}
+.act.today{border:2px solid var(--accent)}
+.act-meta{min-width:0;flex:1}
+.act-meta .sub{font-size:13px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:2px 6px}
+.t-key{background:var(--accent);color:var(--accent-ink)}
+.t-test{background:var(--z7);color:#fff}
+.t-end{background:color-mix(in srgb,var(--z2) 16%,transparent);color:var(--z2)}
+.t-rest{background:var(--soft);color:var(--muted)}
+.t-opt{border:1px solid var(--line);color:var(--muted)}
+.t-adj{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+.status{margin-left:auto;align-self:flex-start;font-size:12px;font-weight:700;white-space:nowrap}
+.s-done{color:var(--ok)} .s-today{color:var(--accent)} .s-planned{color:var(--muted)} .s-past{color:var(--muted)}
+.act h2{margin:12px 16px 0;font-size:19px;line-height:1.25;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.act .stats{margin:10px 16px 0}
+.profile{display:block;width:100%;height:auto;margin-top:12px;background:var(--soft)}
+.profile text{fill:var(--muted);font:600 10px var(--font)}
+.act-foot{padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.act-foot .desc{color:var(--fg)}
+.act-foot .note{color:var(--muted)}
+.result{border-top:1px solid var(--line);padding:12px 16px 14px;background:color-mix(in srgb,var(--ok) 6%,var(--card))}
+.result .stats{margin:8px 0 0}
+.result .v{font-size:18px}
+.result p{margin:8px 0 0;font-size:14px}
+.result a{color:var(--accent);font-weight:700;text-decoration:none;font-size:13px}
+.result a:focus-visible,.result a:hover{text-decoration:underline}
+.rest-body{padding:12px 16px 16px;color:var(--muted)}
+.zl{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted);padding:4px 2px}
+.zl span{display:inline-flex;align-items:center;gap:4px}
+.zl i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.empty{padding:28px 16px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--fg);font-size:17px;margin-bottom:4px}
+.foot{font-size:12px;color:var(--muted);text-align:center;padding-top:6px}
+</style>
+
+<div class="wrap" id="app">
+  <div class="top"><h1>This week</h1><span class="range" id="range"></span></div>
+  <div class="card empty" id="empty"><b>Your training week appears here</b>The coach updates this page every morning and every Sunday evening with the week's Zwift workouts.</div>
+  <div id="content" hidden></div>
+</div>
+
+<script>
+(function(){
+  const $ = (t, cls, txt) => { const e = document.createElement(t); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const NS = "http://www.w3.org/2000/svg";
+  const sv = (t, attrs) => { const e = document.createElementNS(NS, t); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  const hm = m => { m = Math.round(m || 0); const h = Math.floor(m / 60), r = m % 60; return h ? (r ? `${h}h ${r}m` : `${h}h`) : `${r}m`; };
+  const zoneVar = (w, z) => { let i = 0; while (i < z.length && w > z[i]) i++; return `var(--z${i + 1})`; };
+
+  function stat(label, value, unit){
+    const s = $("div", "stat"); s.append($("div", "l", label));
+    const v = $("div", "v num", value); if (unit) v.append($("small", null, unit)); s.append(v); return s;
+  }
+
+  function profileSvg(segs, d, ftp, zones){
+    const total = segs.reduce((a, s) => a + s[0], 0) || 1;
+    const W = 600, H = 120, top = 8, ymax = Math.max(1.75 * ftp, ...segs.map(s => Math.max(s[1], s[2]))) ;
+    const y = w => H - (w / ymax) * (H - top);
+    const svg = sv("svg", {viewBox: `0 0 ${W} ${H + 16}`, class: "profile", role: "img", "aria-label": `Power profile, ${hm(total / 60)}`});
+    let t = 0;
+    for (const [sec, a, b, free] of segs){
+      const x0 = t / total * W, x1 = (t + sec) / total * W; t += sec;
+      const avg = (a + b) / 2;
+      const p = sv("polygon", {points: `${x0},${H} ${x0},${y(a)} ${x1},${y(b)} ${x1},${H}`, fill: free ? "var(--z5)" : zoneVar(avg, zones), "fill-opacity": free ? ".55" : "1"});
+      svg.append(p);
+    }
+    const fy = y(ftp);
+    svg.append(sv("line", {x1: 0, x2: W, y1: fy, y2: fy, stroke: "var(--fg)", "stroke-opacity": ".35", "stroke-dasharray": "4 4", "stroke-width": 1}));
+    const lab = sv("text", {x: W - 4, y: fy - 4, "text-anchor": "end"}); lab.textContent = `FTP ${ftp} W`; svg.append(lab);
+    const mins = total / 60, step = mins > 100 ? 30 : mins > 50 ? 15 : 10;
+    for (let m = step; m < mins - step / 3; m += step){
+      const x = m / mins * W, tx = sv("text", {x, y: H + 12, "text-anchor": "middle"}); tx.textContent = `${m}′`; svg.append(tx);
+    }
+    return svg;
+  }
+
+  function dayCard(d, data){
+    const c = $("article", "card act" + (d.status === "today" ? " today" : ""));
+    const head = $("div", "act-head");
+    const b = $("div", "dbadge"); b.append($("b", null, d.dow), $("span", "num", String(+d.date.slice(8)))); head.append(b);
+    const meta = $("div", "act-meta");
+    meta.append($("div", "eyebrow", d.label));
+    const sub = $("div", "sub");
+    const kindTag = {key: ["Key session", "t-key"], test: ["Test", "t-test"], endurance: ["Endurance", "t-end"], recovery: ["Recovery", "t-end"], rest: ["Rest", "t-rest"]}[d.kind];
+    sub.append($("span", "tag " + kindTag[1], kindTag[0]));
+    if (d.optional) sub.append($("span", "tag t-opt", "Optional"));
+    if (d.plan_status) sub.append($("span", "tag t-adj", d.plan_status.replace(/-/g, " ")));
+    if (d.kind !== "rest") sub.append($("span", null, "Zwift · ERG"));
+    meta.append(sub); head.append(meta);
+    const st = {done: ["✓ Done", "s-done"], today: ["Today", "s-today"], planned: ["Planned", "s-planned"], past: ["Past", "s-past"]}[d.status];
+    head.append($("span", "status " + st[1], st[0]));
+    c.append(head);
+    c.append($("h2", null, d.title));
+    if (d.kind === "rest"){ c.append($("div", "rest-body", d.desc + (d.note ? " " + d.note : ""))); return c; }
+    const s = $("div", "stats");
+    s.append(stat("Time", hm(d.minutes)), stat("Avg target", String(d.avg_w), "W"), stat("Est. TSS", String(d.tss)), stat("IF", d.if.toFixed(2)));
+    c.append(s);
+    c.append(profileSvg(d.profile, d, data.ftp, data.zones));
+    const f = $("div", "act-foot");
+    f.append($("div", "desc", d.desc));
+    if (d.note) f.append($("div", "note", d.note));
+    c.append(f);
+    if (d.result){
+      const r = $("div", "result");
+      r.append($("div", "eyebrow", "Ridden"));
+      const rs = $("div", "stats"); for (const [l, v] of d.result.stats) rs.append(stat(l, v)); r.append(rs);
+      if (d.result.verdict) r.append($("p", null, d.result.verdict));
+      if (d.result.strava_id && /^\d+$/.test(String(d.result.strava_id))){
+        const a = $("a", null, "Open activity →"); a.href = `https://www.strava.com/activities/${d.result.strava_id}`; a.target = "_blank"; a.rel = "noopener";
+        const p = $("p"); p.append(a); r.append(p);
+      }
+      c.append(r);
+    }
+    return c;
+  }
+
+  function render(data){
+    const root = document.getElementById("content");
+    root.textContent = "";
+    document.getElementById("range").textContent = data.range;
+    // Week snapshot
+    const snap = $("section", "card pad");
+    const hd = $("div", "snap-head");
+    const left = $("div"); left.style.minWidth = "0";
+    left.append($("div", "eyebrow", "Week snapshot"), $("div", "block", data.block));
+    hd.append(left);
+    if (data.readiness){
+      const cls = {green: "p-green", amber: "p-amber", red: "p-red"}[data.readiness.status] || "p-green";
+      const p = $("span", "pill " + cls); p.append($("i"), document.createTextNode(data.readiness.status[0].toUpperCase() + data.readiness.status.slice(1)));
+      p.title = data.readiness.text; hd.append(p);
+    }
+    snap.append(hd);
+    const t = data.totals, st = $("div", "stats");
+    st.append(stat("Planned", hm(t.minutes)), stat("Est. TSS", String(t.tss)), stat("Key sessions", `${t.key_done}/${t.key_planned}`), stat("FTP", String(data.ftp), "W"));
+    snap.append(st);
+    const bars = $("div", "weekbars"), maxMin = Math.max(60, ...data.days.map(d => d.minutes));
+    for (const d of data.days){
+      const w = $("div", "wb " + d.status + ((d.kind === "key" || d.kind === "test") ? " key" : ""));
+      const bar = $("div", "bar"); bar.style.height = d.kind === "rest" ? "6px" : `${Math.max(10, Math.round(d.minutes / maxMin * 64))}px`;
+      w.append(bar, $("div", "d", d.dow[0]), $("div", "m num", d.kind === "rest" ? "Rest" : hm(d.minutes)));
+      bars.append(w);
+    }
+    snap.append(bars);
+    const rows = $("div", "rows");
+    if (data.gate){
+      const g = data.gate, hi = data.goal_ftp || g.target, lo = Math.floor((Math.min(data.ftp, g.target) - 10) / 10) * 10;
+      const r = $("div"), l = $("div", "row-l");
+      l.append($("span", null, `Gate ${g.label}: ${g.target} W`), $("span", "num", `${g.to_go > 0 ? g.to_go + " W to go" : "Reached"} · ${g.days} days`));
+      const tr = $("div", "track"), fl = $("div", "fill"), tk = $("div", "tick");
+      fl.style.width = `${Math.min(100, Math.max(2, (data.ftp - lo) / (hi - lo) * 100))}%`;
+      tk.style.left = `${(g.target - lo) / (hi - lo) * 100}%`;
+      tr.append(fl, tk);
+      const lg = $("div", "legend"); lg.append($("span", null, `${lo} W`), $("span", null, `Now `), $("span", null, `Goal ${hi} W${data.goal_label ? ", " + data.goal_label : ""}`));
+      lg.children[1].append($("b", "num", `${data.ftp} W`));
+      lg.style.justifyContent = "space-between";
+      r.append(l, tr, lg); rows.append(r);
+    }
+    if (data.split){
+      const sp = data.split, r = $("div"), l = $("div", "row-l");
+      l.append($("span", null, "Planned intensity"), $("span", "num", `Target ${sp.target.join(" / ")}`));
+      const bar = $("div", "split");
+      [[sp.low, "var(--z2)"], [sp.mod, "var(--z4)"], [sp.high, "var(--z6)"]].forEach(([v, col]) => { const s = $("div"); s.style.width = v + "%"; s.style.background = col; bar.append(s); });
+      const lg = $("div", "legend");
+      [["Low", sp.low], ["Moderate", sp.mod], ["High", sp.high]].forEach(([n, v]) => { const s = $("span", null, n + " "); s.append($("b", "num", v + "%")); lg.append(s); });
+      r.append(l, bar, lg); rows.append(r);
+    }
+    snap.append(rows);
+    root.append(snap);
+    // Coach note
+    if (data.verdict || data.readiness){
+      const c = $("section", "card pad coach");
+      c.append($("div", "av", "C"));
+      const body = $("div"); body.style.minWidth = "0";
+      const who = $("div"); who.append($("span", "who", "Coach"), document.createTextNode(" "), $("span", "when", data.verdict ? `Weekly review · ${data.verdict.date}` : ""));
+      body.append(who);
+      if (data.verdict) body.append($("p", null, `${data.verdict.headline[0].toUpperCase()}${data.verdict.headline.slice(1)}. ${data.verdict.text}`));
+      if (data.readiness) body.append($("p", null, `Readiness ${data.readiness.date}: ${data.readiness.status}, ${data.readiness.text}`));
+      c.append(body); root.append(c);
+    }
+    const zl = $("div", "zl");
+    ["Z1 <" + data.zones[0], "Z2", "Z3", "Z4", "Z5", "Z6", "Z7"].forEach((n, i) => { const s = $("span"); const sw = $("i"); sw.style.background = `var(--z${i + 1})`; s.append(sw, document.createTextNode(n)); zl.append(s); });
+    root.append(zl);
+    for (const d of data.days) root.append(dayCard(d, data));
+    if (data.strength){ const s = $("section", "card pad"); s.append($("div", "eyebrow", "Strength"), $("p", null, data.strength)); s.lastChild.style.margin = "6px 0 0"; root.append(s); }
+    root.append($("div", "foot", `Updated ${data.updated.replace("T", " ")} · Restart Zwift to load new workouts`));
+    root.hidden = false;
+    document.getElementById("empty").hidden = true;
+  }
+
+  (async () => {
+    const db = await (window.claude && window.claude.use ? window.claude.use("db") : null);
+    if (!db) return;
+    db.doc("weeks/current").onSnapshot(snap => {
+      if (snap.exists){ try { render(snap.data()); } catch (e) { console.error(e); } }
+    }, err => console.error(err));
+  })();
+})();
+</script>

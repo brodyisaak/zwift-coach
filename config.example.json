@@ -1,0 +1,37 @@
+{
+  "ftp": 289,
+  "ftp_set": "YYYY-MM-DD Zwift 20-min test: best 20 min x 0.95",
+  "weight_kg": 75,
+  "goal_ftp": 330,
+  "goal_date": "2027-04-25",
+  "gates": [
+    {"date": "2026-12-13", "ftp": 300},
+    {"date": "2027-02-07", "ftp": 315}
+  ],
+  "polarized_from": "2027-02-08",
+  "timezone": "America/New_York",
+  "zwift_id": 123456,
+  "zwift_workouts_dir": "~/Documents/Zwift/Workouts/123456",
+  "health_source_dir": "~/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents",
+  "max_hr": 190,
+  "lthr_est": 168,
+  "rest_days": {
+    "required": ["Fri"],
+    "optional": ["Sat"],
+    "note": "Required rest days are never trained and never used for a moved session. Optional rest days take an easy ride at most."
+  },
+  "calendar": {
+    "calendar_id": "you@example.com",
+    "weekday_start": "18:00",
+    "wed_week_a_start": "17:30",
+    "wed_week_b_start": "19:00",
+    "week_a_anchor_monday": "2026-11-02",
+    "note": "Wednesdays alternate between week A and week B start times (e.g. work-from-home vs office days). Weekend blocks start between the earliest and latest start and aim to finish by weekend_finish_by. One-off changes: wed_overrides {\"YYYY-MM-DD\": \"HH:MM\"} or \"calendar_start\" on a plan day.",
+    "wed_overrides": {},
+    "weekend_earliest_start": "14:00",
+    "weekend_latest_start": "15:00",
+    "weekend_finish_by": "18:00",
+    "round_min": 15,
+    "marker": "coach-block"
+  }
+}

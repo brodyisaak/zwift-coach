@@ -1,0 +1,17 @@
+# Your own data stays local
+config.json
+health/*
+!health/README.md
+plans/20*.json
+daily/
+weekly-reviews/
+training-log.md
+athlete-profile.md
+zwift-workouts/
+share/
+
+# Python / OS
+__pycache__/
+*.pyc
+*.bak*
+.DS_Store

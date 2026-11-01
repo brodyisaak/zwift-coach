@@ -1,0 +1,10 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Fri Nov 6 · Rest day</name>
+  <description>Off the bike, or commute only.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <SteadyState Duration="600" Power="0.450"/>
+  </workout>
+</workout_file>

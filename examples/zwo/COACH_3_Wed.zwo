@@ -1,0 +1,54 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Wed Nov 4 · Rolling hills 60min @ ~197W</name>
+  <description>Z2 rolling hills: 4 min seated at 70 rpm near the top of Z2, 3 min spinning at 95. Avg ~197 W, cap 220 W outside sprinkles. Follow the on-screen cues.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <Warmup Duration="600" PowerLow="0.500" PowerHigh="0.680">
+      <textevent timeoffset="0" message="Rolling hills today. Easy first 10 min"/>
+    </Warmup>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="240" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.620" Cadence="95">
+      <textevent timeoffset="0" message="Descent: 95 rpm, loosen shoulders"/>
+    </SteadyState>
+    <SteadyState Duration="180" Power="0.740" Cadence="70">
+      <textevent timeoffset="0" message="Climb: seated, 70 rpm, push through the whole stroke"/>
+    </SteadyState>
+    <Cooldown Duration="300" PowerLow="0.680" PowerHigh="0.500">
+      <textevent timeoffset="0" message="Cool-down. Good work"/>
+    </Cooldown>
+  </workout>
+</workout_file>

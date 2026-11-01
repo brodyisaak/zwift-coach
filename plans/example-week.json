@@ -1,0 +1,23 @@
+{
+  "week_start": "2026-11-02",
+  "block": "Block 1 · week 3 of 4 · Rebuild (sub-threshold + 30/15s)",
+  "target_hours": 7.5,
+  "strength": "Optional: 2 sessions after the Tue and Thu rides. Squat or leg press 3x6, RDL 3x6, split squat 2x8/leg.",
+  "days": [
+    {"date": "2026-11-02", "session": "endurance", "params": {"minutes": 60, "pct": 0.68, "style": "pyramid"}, "status": "planned"},
+    {"date": "2026-11-03", "session": "threshold", "params": {"reps": 4, "on_sec": 600, "pct": 0.9, "off_sec": 180}, "status": "planned", "key": true,
+     "note": "Sub-threshold: comfortably hard, able to speak in short phrases. Last rep no harder than the first."},
+    {"date": "2026-11-04", "session": "endurance", "params": {"minutes": 60, "pct": 0.68, "style": "hills"}, "status": "planned"},
+    {"date": "2026-11-05", "session": "vo2_3015", "params": {"sets": 3, "reps": 12, "pct": 1.218}, "status": "planned", "key": true,
+     "note": "30/15s: the 30 s should feel hard but repeatable."},
+    {"date": "2026-11-06", "session": "rest", "params": {}, "status": "planned"},
+    {"date": "2026-11-07", "session": "endurance", "params": {"minutes": 60, "pct": 0.68, "style": "sprinkles"}, "status": "planned", "note": "Optional. Rest if you prefer."},
+    {"date": "2026-11-08", "session": "endurance", "params": {"minutes": 150, "pct": 0.7, "style": "ladder", "fuel_every_min": 20}, "status": "planned",
+     "note": "Long ride. Fuel 60-90 g carbs/h."}
+  ],
+  "_result_example": {
+    "comment": "The daily routine adds a result to each ridden day, e.g. on a key session:",
+    "result": {"reps_completed": "4/4", "np_w": 227, "tss": 73, "last_rep_max_hr": 159, "rpe": 7,
+               "verdict": "Completed at target. Progress next time.", "strava_id": "<activity id>"}
+  }
+}

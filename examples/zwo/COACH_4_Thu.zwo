@@ -1,0 +1,18 @@
+<workout_file>
+  <author>AI coach</author>
+  <name>Thu Nov 5 · 30/15s 3x12 @ 352W</name>
+  <description>3 sets of 12 x (30 s @ 352 W / 15 s @ 144 W), 5 min easy between sets. 30/15s: the 30 s should feel hard but repeatable.</description>
+  <sportType>bike</sportType>
+  <tags><tag name="COACH"/></tags>
+  <workout>
+    <Warmup Duration="600" PowerLow="0.500" PowerHigh="0.750"/>
+    <IntervalsT Repeat="2" OnDuration="60" OffDuration="60" OnPower="1.070" OffPower="0.550"/>
+    <SteadyState Duration="180" Power="0.550"/>
+    <IntervalsT Repeat="12" OnDuration="30" OffDuration="15" OnPower="1.218" OffPower="0.500"/>
+    <SteadyState Duration="300" Power="0.500"/>
+    <IntervalsT Repeat="12" OnDuration="30" OffDuration="15" OnPower="1.218" OffPower="0.500"/>
+    <SteadyState Duration="300" Power="0.500"/>
+    <IntervalsT Repeat="12" OnDuration="30" OffDuration="15" OnPower="1.218" OffPower="0.500"/>
+    <Cooldown Duration="600" PowerLow="0.600" PowerHigh="0.450"/>
+  </workout>
+</workout_file>
