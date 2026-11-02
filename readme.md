@@ -4,8 +4,6 @@ plans a cycling season, writes each workout into zwift in exact watts, and adjus
 
 built for my own winter block, 289 to 330 w ftp by april 25 on 7.5–10 hours a week. fork it and change the numbers in `config.json` and `season-plan.md` to use it for yours
 
-<img src="docs/phone-page.png" alt="the weekly plan on a phone: week snapshot, gate progress, readiness and a card for each workout" width="320">
-
 ## how it works
 
 1. the iphone exports last night's hrv, resting hr, sleep and respiratory rate to icloud
