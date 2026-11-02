@@ -6,7 +6,7 @@
   python3 tools/week_card.py plans/2026-11-02.json
 
 Writes share/week.json and prints it. The coach routines push it to the phone page
-(collection "weeks", doc "current"); see COACH.md "Phone page".
+(collection "weeks", doc "current"); see coach.md "phone page".
 """
 import datetime as dt, glob, json, os, re, sys
 from zoneinfo import ZoneInfo
