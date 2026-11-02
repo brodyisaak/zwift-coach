@@ -22,13 +22,24 @@ claude runs this on a schedule every morning, then reviews the week every sunday
 
 this is the part that took the most work, and the part i'd copy first. readiness only works if the data turns up every morning without me thinking about it.
 
-one free apple shortcut, **training health export**, reads hrv, resting hr, sleep and respiratory rate, then appends a line to `iCloud Drive/Shortcuts/training-health.csv`. three automations run it:
+one free apple shortcut, **training health export**, reads hrv, resting hr, sleep and respiratory rate, then appends a line to `iCloud Drive/Shortcuts/training-health.csv`.
+
+<p>
+<img src="docs/shortcut-hrv-rhr.webp" alt="the shortcut in the shortcuts editor: find health samples for heart rate variability starting today, average them, then find resting heart rate over the last 1 day" width="260">
+<img src="docs/shortcut-sleep-append.webp" alt="the shortcut's last steps: build the text line from the date and averages, append it to training-health.csv with make new line on, then find sleep samples over the last 1 day, excluding awake and bed" width="260">
+</p>
+
+each metric is a find health samples step followed by an average, or a sum for sleep. the text step joins them into one line, and append writes it to the csv with make new line switched on.
+
+three automations run it:
 
 | trigger | why |
 |---|---|
 | when waking up | fires early. sleep usually hasn't synced yet, but it catches hrv and resting hr |
 | daily at 7:25 am | a backstop. it fails silently if the phone is locked, since ios blocks health reads on a locked phone |
 | **when strava is opened** | the reliable one. the phone is unlocked, i'm up, and sleep has synced |
+
+<img src="docs/automation-strava.webp" alt="the automation: when strava is opened, run training health export" width="320">
 
 so there are a few lines per day, and that's expected. `health_parse.py` keeps the most complete one for each day and builds `health/daily.csv`.
 
@@ -147,7 +158,7 @@ python3 tools/calendar_blocks.py plans/<week>.json    # calendar blocks for the 
 | `tools/` | the engine |
 | `prompts/` | daily and weekly routine prompts |
 | `web/training-week.html` | the phone page |
-| `docs/` | screenshots (sample data) |
+| `docs/` | screenshots. the terminal and phone page grabs use sample data |
 | `examples/zwo/` | sample zwift workouts |
 
 </details>
