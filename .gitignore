@@ -1,7 +1,7 @@
 # Your own data stays local
 config.json
 health/*
-!health/README.md
+!health/readme.md
 plans/20*.json
 daily/
 weekly-reviews/

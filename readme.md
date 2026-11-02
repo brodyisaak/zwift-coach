@@ -64,7 +64,7 @@ so there are several lines per day, and that's expected. `tools/health_parse.py`
 ### backfill and alternatives
 
 - **day-one baseline:** readiness needs 7+ days of history. health app → profile → export all health data, unzip into `health/apple_health_export/`, and the parser picks up months of history at once
-- **health auto export (paid):** if you'd rather not maintain a shortcut, its icloud automation drops daily json files the parser also reads. full steps are in [`health/README.md`](health/README.md)
+- **health auto export (paid):** if you'd rather not maintain a shortcut, its icloud automation drops daily json files the parser also reads. full steps are in [`health/readme.md`](health/readme.md)
 
 ## readiness
 
@@ -87,7 +87,7 @@ after each key session the routine pulls the strava streams and scores every rep
 - **two or more missed:** −5 w, then check readiness and fuelling
 - **long rides:** hr drift under 5% adds 15 minutes next time. over 8% holds the duration and adds a fuelling cue every 15 minutes
 
-the full rulebook is [`COACH.md`](COACH.md). change behaviour there, not in the prompts.
+the full rulebook is [`coach.md`](coach.md). change behaviour there, not in the prompts.
 
 ## what goes into zwift
 
@@ -120,7 +120,7 @@ restart zwift, then go to workouts → custom workouts. your zwift id is the fol
 
 ## running it
 
-the engine is plain python, and every step can be run by hand. the coaching judgement comes from claude on a schedule, following `COACH.md`:
+the engine is plain python, and every step can be run by hand. the coaching judgement comes from claude on a schedule, following `coach.md`:
 
 | when | routine | prompt |
 |---|---|---|
@@ -162,7 +162,7 @@ python3 tools/calendar_blocks.py plans/<week>.json    # calendar blocks for the 
 
 | path | what |
 |---|---|
-| `COACH.md` | the rulebook the routines follow |
+| `coach.md` | the rulebook the routines follow |
 | `season-plan.md` | blocks, gates, weekly template |
 | `research/` | why the intensity balance looks the way it does |
 | `health/` | apple health setup. your data lands here and stays local |
@@ -177,7 +177,7 @@ personal data (`config.json`, health exports, dated plans, daily notes, reviews,
 ## notes
 
 - not medical advice. if the numbers and how you feel both point to illness or overreaching, rest
-- the rules are tuned for one rider's history and hours. treat `COACH.md` and `season-plan.md` as a starting point
+- the rules are tuned for one rider's history and hours. treat `coach.md` and `season-plan.md` as a starting point
 
 ## licence
 

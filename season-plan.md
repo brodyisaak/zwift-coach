@@ -1,62 +1,62 @@
-# Example season plan — 289 → 330 W FTP in 27 weeks
+# example season plan — 289 → 330 w ftp in 27 weeks
 
-A worked example. Copy it, change the dates, FTP and gates to yours, and keep `config.json` `gates` in sync with the table below.
+a worked example. copy it, change the dates, ftp and gates to yours, and keep `config.json` `gates` in sync with the table below.
 
-27 weeks, seven blocks. Blocks of 3 build weeks + 1 recovery week, except the final peak block. Every watt target is rescaled from the latest tested FTP.
+27 weeks, seven blocks. blocks of 3 build weeks + 1 recovery week, except the final peak block. every watt target is rescaled from the latest tested ftp.
 
-## Targets and gates (Zwift 20-min tests)
+## targets and gates (zwift 20-min tests)
 
-| Date | Gate | If missed |
+| date | gate | if missed |
 |---|---|---|
-| Wed Oct 21 | Baseline test: **289 W** (best 20 min 304 W) | Done |
-| **Sun Dec 13** | **≥ 300 W** | < 295 → spring goal becomes 315 |
-| **Sun Feb 7** | **≥ 315 W** | < 308 → spring goal becomes 320 |
-| **Sun Apr 25** | **330 W** | — |
+| wed oct 21 | baseline test: **289 w** (best 20 min 304 w) | done |
+| **sun dec 13** | **≥ 300 w** | < 295 → spring goal becomes 315 |
+| **sun feb 7** | **≥ 315 w** | < 308 → spring goal becomes 320 |
+| **sun apr 25** | **330 w** | — |
 
-## Blocks
+## blocks
 
-Built from `research/aerobic-anaerobic-balance.md`. **30/15s are now the main VO2 session**, and sub-threshold work starts in Block 1. FTP 289 W (tested Oct 21).
+built from `research/aerobic-anaerobic-balance.md`. **30/15s are now the main vo2 session**, and sub-threshold work starts in block 1. ftp 289 w (tested oct 21).
 
-| # | Dates | Focus | Key 1 (Tue) | Key 2 (Thu) | Long ride (Sun) | Hours/wk |
+| # | dates | focus | key 1 (tue) | key 2 (thu) | long ride (sun) | hours/wk |
 |---|---|---|---|---|---|---|
-| 1 | Oct 19 – Nov 15 | Rebuild + test | Sub-threshold 4×8 → 4×10 → 3×12 @ 88–92% | 30/15s 3×10 → 3×12 @ 120–122% | 2–2.5 h Z2, finish sprints every 2nd week | 7.5–8 |
-| 2 | Nov 16 – Dec 13 | Threshold foundation | 3×12 → 3×15 → 2×20 @ 92–95% | 30/15s 3×13 @ 122–125% | 2–2.5 h; from Dec: 2×10 @ 88–90% in the last 40 min | 8–9 |
-| 3 | Dec 14 – Jan 10 | Holiday volume | Over-unders 3×(4×3 min) | 30/15s, or 5×4 min @ 113% every 2nd week for variety | 2.5–3 h with late efforts, 2–3 long rides | 9–10 |
-| 4 | Jan 11 – Feb 7 | Threshold extension | 2×20 → 3×15 → 2×25 @ 95–100% | 30/15s 3×13 @ 125% | 2.5–3 h, late efforts 2×12 @ 90% | 9–10 |
-| 5 | Feb 8 – Mar 7 | Shift to polarized (3 quality) | 2×20 @ 100% | 5×5 @ 112% and 30/15s (alternate weeks) | Long ride with 2×20 @ 90% late (Q3) | 10 |
-| 6 | Mar 8 – Apr 4 | Race-specific / outdoor transition | 2×30 @ 95%, or 60 min @ 90% | 6×4 @ 115% | Outdoor long rides | 9–10 |
-| 7 | Apr 5 – Apr 25 | Peak + taper | Openers, 2×10 @ 100% | Short VO2 | Volume −40%; test Sun Apr 25 | 9 → 6 |
+| 1 | oct 19 – nov 15 | rebuild + test | sub-threshold 4×8 → 4×10 → 3×12 @ 88–92% | 30/15s 3×10 → 3×12 @ 120–122% | 2–2.5 h z2, finish sprints every 2nd week | 7.5–8 |
+| 2 | nov 16 – dec 13 | threshold foundation | 3×12 → 3×15 → 2×20 @ 92–95% | 30/15s 3×13 @ 122–125% | 2–2.5 h; from dec: 2×10 @ 88–90% in the last 40 min | 8–9 |
+| 3 | dec 14 – jan 10 | holiday volume | over-unders 3×(4×3 min) | 30/15s, or 5×4 min @ 113% every 2nd week for variety | 2.5–3 h with late efforts, 2–3 long rides | 9–10 |
+| 4 | jan 11 – feb 7 | threshold extension | 2×20 → 3×15 → 2×25 @ 95–100% | 30/15s 3×13 @ 125% | 2.5–3 h, late efforts 2×12 @ 90% | 9–10 |
+| 5 | feb 8 – mar 7 | shift to polarized (3 quality) | 2×20 @ 100% | 5×5 @ 112% and 30/15s (alternate weeks) | long ride with 2×20 @ 90% late (q3) | 10 |
+| 6 | mar 8 – apr 4 | race-specific / outdoor transition | 2×30 @ 95%, or 60 min @ 90% | 6×4 @ 115% | outdoor long rides | 9–10 |
+| 7 | apr 5 – apr 25 | peak + taper | openers, 2×10 @ 100% | short vo2 | volume −40%; test sun apr 25 | 9 → 6 |
 
-## Intensity balance (by time, all rides)
+## intensity balance (by time, all rides)
 
-| Phase | Low (<75% FTP) | Moderate (75–105%) | High (>105%) |
+| phase | low (<75% ftp) | moderate (75–105%) | high (>105%) |
 |---|---|---|---|
-| Blocks 1–4 (to Feb 7): pyramidal | ~78% | ~16% | ~6% |
-| Blocks 5–7 (Feb 8 on): polarized | ~80% | ~10% | ~10% |
+| blocks 1–4 (to feb 7): pyramidal | ~78% | ~16% | ~6% |
+| blocks 5–7 (feb 8 on): polarized | ~80% | ~10% | ~10% |
 
-- **Anaerobic dose:** every second week, 5 × 20 s sprints at the end of the Sunday ride (`finish_sprints`). Also sprinkles inside one Z2 ride a week. Never the day before a key session. For a rider whose top end is already strong (5-min power well above 120% of FTP), the limiter is threshold, so anaerobic work is maintenance and variety, never a block focus.
-- **Durability:** from December the long ride ends with quality on tired legs (`late_efforts`). Fuel 90–120 g carbs/h on rides over 2 h.
-- **Strength:** heavy legs (4–8 RM: squat or leg press, RDL, split squat; 2–3 sets) 2× a week Nov–Feb, ideally after Tue/Thu rides so easy days stay easy. 1× a week from March. Stop 10 days before the Apr 25 test.
-- **Watts:** 30/15s at 120–125% = 347–361 W. Sub-threshold at 88–92% = 254–266 W. Threshold at 95–100% = 275–289 W.
+- **anaerobic dose:** every second week, 5 × 20 s sprints at the end of the sunday ride (`finish_sprints`). also sprinkles inside one z2 ride a week. never the day before a key session. for a rider whose top end is already strong (5-min power well above 120% of ftp), the limiter is threshold, so anaerobic work is maintenance and variety, never a block focus.
+- **durability:** from december the long ride ends with quality on tired legs (`late_efforts`). fuel 90–120 g carbs/h on rides over 2 h.
+- **strength:** heavy legs (4–8 rm: squat or leg press, rdl, split squat; 2–3 sets) 2× a week nov–feb, ideally after tue/thu rides so easy days stay easy. 1× a week from march. stop 10 days before the apr 25 test.
+- **watts:** 30/15s at 120–125% = 347–361 w. sub-threshold at 88–92% = 254–266 w. threshold at 95–100% = 275–289 w.
 
-Recovery weeks: Nov 9–15, Dec 7–13, Jan 4–10, Feb 1–7, Mar 1–7, Mar 29–Apr 4. Each one is about 60% volume, keeps openers and ends with a test or benchmark.
+recovery weeks: nov 9–15, dec 7–13, jan 4–10, feb 1–7, mar 1–7, mar 29–apr 4. each one is about 60% volume, keeps openers and ends with a test or benchmark.
 
-## Weekly template
+## weekly template
 
-| Day | Default | Notes |
+| day | default | notes |
 |---|---|---|
-| Mon | Z2 45–60 min @ 185–205 W | Easy after the long ride. Commute counts as extra |
-| Tue | **Q1** (VO2 or threshold) | Zwift, ERG |
-| Wed | Z2 60 min @ 185–205 W | Commute counts as extra |
-| Thu | **Q2** | Zwift, ERG |
-| Fri | **Rest (fixed)** | Never trained, never used for a moved session |
-| Sat | Optional rest, or Z2 60–90 min | Your call on the day. Key sessions land here only if no other slot exists |
-| Sun | **Long ride** 2–3 h Z2 (outdoor when dry) | Tempo inserts from Block 4; **Q3** as threshold inserts from Block 5. Optional race replaces Q2/Q3, never added |
+| mon | z2 45–60 min @ 185–205 w | easy after the long ride. commute counts as extra |
+| tue | **q1** (vo2 or threshold) | zwift, erg |
+| wed | z2 60 min @ 185–205 w | commute counts as extra |
+| thu | **q2** | zwift, erg |
+| fri | **rest (fixed)** | never trained, never used for a moved session |
+| sat | optional rest, or z2 60–90 min | your call on the day. key sessions land here only if no other slot exists |
+| sun | **long ride** 2–3 h z2 (outdoor when dry) | tempo inserts from block 4; **q3** as threshold inserts from block 5. optional race replaces q2/q3, never added |
 
-## Non-negotiables
+## non-negotiables
 
-- Two structured key sessions every week, even in busy weeks. Cut the Z2 rides before the key sessions
-- Nothing between 210 and 250 W unless it's prescribed
-- One race per week maximum, and it counts as a key session
-- Daily readiness check (Apple Health) decides whether today runs as written, gets trimmed, or swaps. See `COACH.md`
-- Missing a key session doesn't mean doubling up. The plan moves it or drops it
+- two structured key sessions every week, even in busy weeks. cut the z2 rides before the key sessions
+- nothing between 210 and 250 w unless it's prescribed
+- one race per week maximum, and it counts as a key session
+- daily readiness check (apple health) decides whether today runs as written, gets trimmed, or swaps. see `coach.md`
+- missing a key session doesn't mean doubling up. the plan moves it or drops it
