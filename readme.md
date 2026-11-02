@@ -1,145 +1,123 @@
 # zwift-coach
 
-a file-based cycling coach that runs my indoor winter. it plans the season, writes every workout straight into zwift in exact watts, and rewrites today's session each morning based on how i slept and how yesterday's ride actually went.
+**a file-based cycling coach that rewrites today's zwift workout based on how i slept and how yesterday's ride went.**
 
-the current target is **289 → 330 w ftp by late april**, 7.5–10 hours a week, mostly on zwift. it's built for one rider and shared as a template. fork it, change the numbers, keep what works.
+it plans the season, writes every session into zwift in exact watts, and checks recovery each morning before i get on the bike. if the numbers are good, the workout stands. if they're not, it gets trimmed or swapped before i ever see it.
 
-<img src="docs/phone-page.png" alt="weekly plan on a phone: week snapshot, gate progress, readiness and a card per workout with its power profile" width="320">
+the current target is 289 → 330 w ftp by late april, on 7.5–10 hours a week, mostly indoors. it's built for one rider, but it's set up as a template, so fork it and change the numbers.
 
-## the loop
+<img src="docs/phone-page.png" alt="the weekly plan on a phone: week snapshot, gate progress, readiness and a card for each workout" width="320">
 
-```
-iphone (overnight)          mac (morning)                       zwift (evening)
-─────────────────           ──────────────                      ───────────────
-watch records hrv,     →    health_parse.py → daily.csv    →    custom workouts
-resting hr, sleep,          readiness: green / amber / red      COACH_1_Mon … COACH_7_Sun
-breathing rate              pivot: trim, swap or ride as written
-shortcut appends a          strava: score yesterday's reps,
-line to icloud              progress the next key session
-```
+## how a morning works
 
-every morning the routine reads recovery data from apple health and yesterday's ride from strava, decides whether today stands, and overwrites today's `.zwo` file. sunday evening it reviews the week and builds the next one. by the time i open zwift the workout is already the right one.
+my iphone exports last night's recovery data to icloud. the mac turns it into a readiness score: green, amber or red. then it applies that score to today's session and rewrites the zwift file.
 
-## iphone automations
+<img src="docs/morning-run.png" alt="terminal: health_parse.py writes daily.csv, then pivot flags amber for short sleep and trims thursday's 30/15s from 3 sets to 2" width="720">
 
-this is the part that took the most iteration, and the part i'd steal first if i were you. readiness only works if the data arrives every morning without me thinking about it.
+that's a real run on sample data. sleep came in at 6.1 h, so thursday's 30/15s dropped from 3 sets to 2 and the zwift file was rewritten. by the time i open zwift, the workout is already the right one.
 
-### the shortcut
+claude runs this on a schedule every morning, then reviews the week every sunday and builds the next one. every step also runs fine by hand.
 
-one free apple shortcut, **training health export**, appends a single line to `iCloud Drive/Shortcuts/training-health.csv`:
+## the iphone side
 
-```
-yyyy-MM-dd, hrv_ms, resting_hr, sleep_today_s, resp_rate, sleep_since_yesterday_s
-```
+this is the part that took the most work, and the part i'd copy first. readiness only works if the data turns up every morning without me thinking about it.
 
-it's six actions:
+one free apple shortcut, **training health export**, reads hrv, resting hr, sleep and respiratory rate, then appends a line to `iCloud Drive/Shortcuts/training-health.csv`. three automations run it:
 
-1. find health samples → heart rate variability, start date is today → average
-2. find health samples → resting heart rate, last 1 day → average
-3. find health samples → sleep, start date is today, value not "awake" or "in bed" → sum of durations
-4. find health samples → respiratory rate, start date is today, **limit 10** → average
-5. format the date, build the line, append to `training-health.csv`
-6. sleep again over "the last 1 day" → append the second sum to the same line
-
-### three automations, on purpose
-
-all three run the same shortcut, with no notification:
-
-| trigger | why it's there |
+| trigger | why |
 |---|---|
-| when waking up | fires early. usually before the watch has synced last night's sleep, but it reliably catches hrv and resting hr |
-| daily at 7:25 am | a backstop. fails silently if the phone is locked, because ios blocks health reads on a locked phone |
-| **when strava is opened** | the reliable one. the phone is unlocked, i'm awake, and sleep has synced |
+| when waking up | fires early. sleep usually hasn't synced yet, but it catches hrv and resting hr |
+| daily at 7:25 am | a backstop. it fails silently if the phone is locked, since ios blocks health reads on a locked phone |
+| **when strava is opened** | the reliable one. the phone is unlocked, i'm up, and sleep has synced |
 
-so there are several lines per day, and that's expected. `tools/health_parse.py` keeps the most complete run for each day and ignores the rest.
+so there are a few lines per day, and that's expected. `health_parse.py` keeps the most complete one for each day and builds `health/daily.csv`.
 
-### things i learned the hard way
+<img src="docs/health-pipeline.png" alt="terminal: raw shortcut lines with two runs per day, then the parsed daily.csv with hrv, resting hr, sleep hours and respiratory rate" width="720">
 
-- **"last 1 day" is a calendar window, not 24 hours.** it covers yesterday 00:00 to now, which is two nights. that's why the shortcut logs two sleep sums. last night = `since_yesterday(today) − today(yesterday)`. it needs one previous morning's line, so sleep shows up from the second morning. anything outside 1–11 h is thrown out
-- **ios caps how much health data a shortcut can write to a file.** respiratory rate with no limit pulled 151 samples and was blocked. capping it at 10 fixed it. if you hit the limit anyway: settings → apps → shortcuts → advanced → allow sharing large amounts of data
-- **icloud evicts the csv.** the mac often keeps it cloud-only, and the morning run reads nothing. in finder, right-click the file → keep downloaded
-- **grant the narrowest permissions.** the shortcut reads hrv, resting hr, sleep and respiratory rate only. set the two append steps to always allow, or the automation stalls waiting for a tap nobody sees
-- **wear the watch to bed.** no overnight data means no hrv baseline. without sleep, readiness runs on hr and hrv alone and says so
+a few things i learned the hard way:
 
-### backfill and alternatives
+- **"last 1 day" in shortcuts means since midnight yesterday, not the last 24 hours.** that covers two nights, so the shortcut logs two sleep totals and the parser subtracts one from the other. sleep shows up from the second morning
+- **ios caps how much health data a shortcut can write.** respiratory rate pulled 151 samples and was blocked. limiting it to 10 fixed it
+- **icloud evicts the csv.** the mac often keeps it cloud-only, so the morning run reads nothing. right-click the file in finder → keep downloaded
+- **set the two append steps to always allow.** otherwise the automation stalls waiting for a tap nobody sees
+- **wear the watch to bed.** no overnight data means no hrv baseline
 
-- **day-one baseline:** readiness needs 7+ days of history. health app → profile → export all health data, unzip into `health/apple_health_export/`, and the parser picks up months of history at once
-- **health auto export (paid):** if you'd rather not maintain a shortcut, its icloud automation drops daily json files the parser also reads. full steps are in [`health/readme.md`](health/readme.md)
+need a baseline on day one? export all health data from the health app, unzip it into `health/apple_health_export/`, and the parser picks up months of history at once. the full shortcut build and a paid alternative (health auto export) are in [`health/readme.md`](health/readme.md).
 
-## readiness
+## when recovery's off
 
-the baseline is the previous 28 days. hrv is log-transformed and smoothed over 3 days so one bad night doesn't wreck a week.
+<img src="docs/amber-day.png" alt="phone card for thursday: key session, amber adjusted, 30/15s 2x12 at 352 w, 50 minutes" width="400">
+
+the baseline is the previous 28 days. hrv is log-transformed and averaged over 3 days, so one bad night doesn't wreck a week.
 
 | status | triggers | what changes |
 |---|---|---|
 | green | no flags | ride as written |
 | amber | hrv z < −1, resting hr > +3 bpm, or sleep 5.5–6.5 h | key session drops a rep and 3% watts, z2 is cut 25%, tests are postponed |
-| red | hrv z < −2, resting hr > +5 two days running, sleep < 5.5 h, breathing rate > +1.5, or two amber flags | 30-min recovery spin. the key session moves to a safe later day, or drops |
+| red | hrv z < −2, resting hr > +5 two days running, sleep < 5.5 h, breathing rate > +1.5, or two amber flags | 30-min recovery spin, and the key session moves to a later safe day or drops |
 
-a "safe day" is never a required rest day and never next to another key session. re-running the pivot on the same day is safe: it always starts from the original session, so trims don't stack.
+a safe day is never a required rest day and never next to another key session. running the pivot twice on the same day doesn't stack the trims.
 
 ## how sessions progress
 
 after each key session the routine pulls the strava streams and scores every rep. a rep counts if average power held within 3% of target for 95% of it.
 
-- **all reps, hr to spare:** progress next time (+5 w or +1 rep)
-- **one rep missed:** repeat the session
+- **all reps, hr to spare:** +5 w or +1 rep next time
+- **one rep missed:** repeat it
 - **two or more missed:** −5 w, then check readiness and fuelling
 - **long rides:** hr drift under 5% adds 15 minutes next time. over 8% holds the duration and adds a fuelling cue every 15 minutes
 
-the full rulebook is [`coach.md`](coach.md). change behaviour there, not in the prompts.
+the full rulebook is [`coach.md`](coach.md). if you want to change how it coaches, change it there, not in the prompts.
 
-## what goes into zwift
+## what lands in zwift
 
-each weekday has a fixed slot (`COACH_1_Mon.zwo` … `COACH_7_Sun.zwo`) that gets overwritten every week, so zwift's custom workout list never grows. workouts are stored as a % of ftp, so **zwift's ftp setting has to match `config.json`**, or every target shifts.
+each weekday has a fixed slot, `COACH_1_Mon.zwo` to `COACH_7_Sun.zwo`, which gets overwritten every week, so the custom workouts list never grows. workouts are stored as a percentage of ftp, so **zwift's ftp setting has to match `config.json`**. if they don't match, every target shifts.
 
-z2 days rotate through four formats so endurance work doesn't turn into staring at a number:
+<img src="docs/long-ride.png" alt="phone card for sunday: cadence ladder, 150 minutes at about 202 w, with a flat z2 power profile" width="400">
 
-| style | what it is |
-|---|---|
-| `ladder` | same power, cadence climbs 85 → 95 → 105 → 115 rpm every 10 min |
-| `hills` | 4 min seated at 70 rpm near the top of z2, then 3 min spinning at 95 |
-| `sprinkles` | a 10-s acceleration every 8 min. never the day before a key session, never on rides of 90 min or more |
-| `pyramid` | 3-min steps from 62% to 74% and back, with changing cadence |
+z2 days rotate through four formats so endurance rides don't turn into staring at one number:
 
-long rides can also take `late_efforts` (threshold work on tired legs) and `finish_sprints` (a small anaerobic dose), with a fuelling cue every 20 minutes.
+- **ladder:** same power, cadence climbs 85 → 95 → 105 → 115 rpm every 10 min
+- **hills:** 4 min seated at 70 rpm near the top of z2, then 3 min spinning at 95
+- **sprinkles:** a 10-s acceleration every 8 min. never the day before a key session, never on rides of 90 min or more
+- **pyramid:** 3-min steps from 62% to 74% and back, with changing cadence
+
+long rides can also finish with late efforts on tired legs or a few sprints, and they get a fuelling cue every 20 minutes.
 
 ## setup
 
-needs python 3.9+, `numpy` (ride metrics only) and zwift with a smart trainer.
+you'll need python 3.9+, `numpy` (for ride metrics only) and zwift with a smart trainer.
 
 ```bash
 git clone https://github.com/brodyisaak/zwift-coach.git && cd zwift-coach
 cp config.example.json config.json                  # ftp, gates, zwift id, health folder
 cp plans/example-week.json plans/2026-11-02.json    # plans are named by their monday
-python3 tools/coach.py show  plans/2026-11-02.json  # sanity-check the week in watts
+python3 tools/coach.py show  plans/2026-11-02.json  # check the week in watts
 python3 tools/coach.py build plans/2026-11-02.json  # write the .zwo files into zwift
 ```
 
 restart zwift, then go to workouts → custom workouts. your zwift id is the folder name under `~/Documents/Zwift/Workouts/`.
 
-## running it
+to put it on a schedule, paste [`prompts/daily-routine.md`](prompts/daily-routine.md) into a scheduled claude task for every morning, and [`prompts/weekly-review.md`](prompts/weekly-review.md) into one for sunday evening. claude needs access to this folder and strava. google calendar is optional, for ride blocks around work.
 
-the engine is plain python, and every step can be run by hand. the coaching judgement comes from claude on a schedule, following `coach.md`:
-
-| when | routine | prompt |
-|---|---|---|
-| every morning | parse health, score yesterday, pivot today, rewrite zwift | [`prompts/daily-routine.md`](prompts/daily-routine.md) |
-| sunday evening | review the week, build next week | [`prompts/weekly-review.md`](prompts/weekly-review.md) |
-
-the assistant needs this folder and strava. google calendar is optional, for ride blocks around work.
+<details>
+<summary><b>all commands</b></summary>
 
 ```bash
 python3 tools/health_parse.py                         # apple health → health/daily.csv
 python3 tools/coach.py readiness [YYYY-MM-DD]         # green / amber / red
 python3 tools/coach.py pivot plans/<week>.json [DATE] # apply readiness and rebuild
 python3 tools/coach.py build plans/<week>.json        # write the week into zwift
+python3 tools/coach.py show  plans/<week>.json        # print the week in watts
 python3 tools/ride_metrics.py streams.json <FTP>      # np, tss, zones, best 1/5/20/60 min
 python3 tools/week_card.py [--next]                   # phone page data → share/week.json
 python3 tools/calendar_blocks.py plans/<week>.json    # calendar blocks for the week
 ```
 
-### session library
+</details>
+
+<details>
+<summary><b>session library</b></summary>
 
 | key | session | params |
 |---|---|---|
@@ -152,32 +130,37 @@ python3 tools/calendar_blocks.py plans/<week>.json    # calendar blocks for the 
 | `endurance` | z2, four styles | `minutes`, `pct`, `style`, `late_efforts`, `finish_sprints`, `fuel_every_min` |
 | `recovery` · `openers` · `rest` | — | — |
 
-`pct` is a fraction of ftp. a plan is one mon–sun json file. see [`plans/example-week.json`](plans/example-week.json) and the generated output in [`examples/zwo/`](examples/zwo/).
+`pct` is a fraction of ftp. a plan is one json file covering monday to sunday. see [`plans/example-week.json`](plans/example-week.json) and the sample output in [`examples/zwo/`](examples/zwo/).
 
-## the plan behind it
+</details>
 
-27 weeks in seven blocks: three build weeks and a recovery week, with ftp test gates in december and february. pyramidal through the base, polarized from february. the plan is in [`season-plan.md`](season-plan.md), and the evidence behind the intensity balance is in [`research/`](research/aerobic-anaerobic-balance.md).
-
-## layout
+<details>
+<summary><b>folder layout</b></summary>
 
 | path | what |
 |---|---|
 | `coach.md` | the rulebook the routines follow |
-| `season-plan.md` | blocks, gates, weekly template |
-| `research/` | why the intensity balance looks the way it does |
+| `season-plan.md` | blocks, gates and the weekly template |
+| `research/` | the evidence behind the intensity balance |
 | `health/` | apple health setup. your data lands here and stays local |
 | `plans/` | one json file per week |
 | `tools/` | the engine |
 | `prompts/` | daily and weekly routine prompts |
 | `web/training-week.html` | the phone page |
+| `docs/` | screenshots (sample data) |
 | `examples/zwo/` | sample zwift workouts |
 
-personal data (`config.json`, health exports, dated plans, daily notes, reviews, the training log) is in `.gitignore` and never leaves the machine.
+</details>
+
+## the plan behind it
+
+27 weeks in seven blocks: three build weeks and a recovery week, with ftp test gates in december and february. it's pyramidal through the base and polarized from february. the plan is in [`season-plan.md`](season-plan.md), and the research behind the intensity balance is in [`research/`](research/aerobic-anaerobic-balance.md).
 
 ## notes
 
+- personal data (`config.json`, health exports, dated plans, daily notes, reviews and the training log) is in `.gitignore` and stays on your machine
 - not medical advice. if the numbers and how you feel both point to illness or overreaching, rest
-- the rules are tuned for one rider's history and hours. treat `coach.md` and `season-plan.md` as a starting point
+- the rules are tuned to one rider's history and hours. treat `coach.md` and `season-plan.md` as a starting point
 
 ## licence
 
