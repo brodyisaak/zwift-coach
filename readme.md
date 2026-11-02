@@ -6,8 +6,6 @@ it plans the season, writes every session into zwift in exact watts, and checks 
 
 the current target is 289 → 330 w ftp by late april, on 7.5–10 hours a week, mostly indoors. it's built for one rider, but it's set up as a template, so fork it and change the numbers.
 
-<img src="docs/phone-page.png" alt="the weekly plan on a phone: week snapshot, gate progress, readiness and a card for each workout" width="320">
-
 ## how a morning works
 
 my iphone exports last night's recovery data to icloud. the mac turns it into a readiness score: green, amber or red. then it applies that score to today's session and rewrites the zwift file.
