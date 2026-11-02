@@ -182,6 +182,7 @@ LIB = {"ftp_test": ftp_test, "vo2_long": vo2_long, "vo2_3015": vo2_3015, "thresh
        "over_under": over_under, "sweet_spot": sweet_spot, "endurance": endurance, "recovery": recovery,
        "openers": openers, "rest": rest}
 KEY_SESSIONS = {"ftp_test", "vo2_long", "vo2_3015", "threshold", "over_under", "sweet_spot"}
+DEFAULT_PCT = {"vo2_long": 1.13, "threshold": 0.95, "sweet_spot": 0.90}   # must match the builders above
 
 
 # ---------------------------------------------------------------- .zwo writer
@@ -350,11 +351,18 @@ def pivot(plan_path, date=None):
     if not day or r["status"] in ("unknown", "green"):
         print("No change." if day else "Date not in plan.")
         return r
-    key, p = day["session"], dict(day.get("params", {}))
-    orig = dict(session=key, params=dict(p))
+    if day.get("status") == "red-swapped":
+        print("Already swapped for a recovery day. No change.")
+        return r
+    # re-runs start from the original session, so trims never stack (amber can still escalate to red)
+    if day.get("status") == "amber-adjusted":
+        orig = day["original"]
+    else:
+        orig = dict(session=day["session"], params=dict(day.get("params", {})))
+    key, p = orig["session"], dict(orig["params"])
     if r["status"] == "amber":
         if key in ("vo2_long", "threshold", "sweet_spot"):
-            p["reps"] = max(p.get("reps", 3) - 1, 2); p["pct"] = round(p.get("pct", 1.0) * 0.97, 3)
+            p["reps"] = max(p.get("reps", 3) - 1, 2); p["pct"] = round(p.get("pct", DEFAULT_PCT[key]) * 0.97, 3)
         elif key == "vo2_3015":
             p["sets"] = max(p.get("sets", 3) - 1, 2)
         elif key == "over_under":
