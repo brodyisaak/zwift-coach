@@ -187,7 +187,7 @@ KEY_SESSIONS = {"ftp_test", "vo2_long", "vo2_3015", "threshold", "over_under", "
 # ---------------------------------------------------------------- .zwo writer
 def zwo_xml(name, desc, steps):
     f = lambda w: f"{w / FTP:.3f}"
-    out = ['<workout_file>', '  <author>AI coach</author>', f'  <name>{escape(name)}</name>',
+    out = ['<workout_file>', '  <author>zwift-coach</author>', f'  <name>{escape(name)}</name>',
            f'  <description>{escape(desc)}</description>', '  <sportType>bike</sportType>',
            '  <tags><tag name="COACH"/></tags>', '  <workout>']
     def emit(tag, attrs, extra):
